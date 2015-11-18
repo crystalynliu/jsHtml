@@ -10,7 +10,7 @@ div.search{
 div.search input{
 	width: 98%;
 	padding: 10px 1%;
-	border: blue 4px solid;
+	border: #7995EF 4px solid;
 	border-radius: 4px;
 	font-size: 24px;
 }
@@ -33,6 +33,10 @@ ul li div.title{
 	overflow:hidden;
 	text-overflow:ellipsis;
 	color: rgb(30,30,30);
+}
+ul li span{
+	background: #FF0091;
+	color: white;
 }
 ul li div.createDate{
 	text-align: right;

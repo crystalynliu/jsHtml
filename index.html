@@ -4,21 +4,32 @@
 	<meta charset="UTF-8">
 	<title>JShtml</title>
 	<link rel="stylesheet" type="text/css" href="main.css">
-	<script type="text/javascript" src="js/jquery-1.11.js"></script>
+	<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+	<script type="text/javascript" src="js/convertDate.js"></script>
+	<script type="text/javascript" src="js/handleMarks.js"></script>
 	<script type="text/javascript">
-
+		$.ajax({
+			type:"GET",
+			dataType:"json",
+			url:"bookmarks.json",
+			success:function(data){
+				createlist(data);
+			}
+		})
+	 </script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			handleMarks();
+		})
 	</script>
 </head>
 <body>
 	<article>
 		<div>
 			<div class="search">
-				<input type="text" >
+				<input id="searchkey" type="text" val="" />
 			</div>
 			<ul>
-				<li class="list"><div class="title">推荐一个数据库查询监控插件-query_reviewer-rails-Ruby-<span>Java</span>推荐一个数据</div><div class="createDate">Created@2013-12-17</div></li>
-				<li class="list"><div class="title">好玩的免费软件：Gmail Drive(Gmail硬盘) - BeanSoft's Java B好玩的免费</div><div class="createDate">Created@2013-12-17</div></li>
-				<li class="list"><div class="title">一个采用JavaScript开发基于Web的代码编辑器 - ACE_IT新闻_博客园</div><div class="createDate">Created@2013-12-17</div></li>
 			</ul>
 		</div>
 	</article>
