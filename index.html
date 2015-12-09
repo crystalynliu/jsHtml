@@ -4,24 +4,6 @@
 	<meta charset="UTF-8">
 	<title>JShtml</title>
 	<link rel="stylesheet" type="text/css" href="main.css">
-	<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
-	<script type="text/javascript" src="js/convertDate.js"></script>
-	<script type="text/javascript" src="js/handleMarks.js"></script>
-	<script type="text/javascript">
-		$.ajax({
-			type:"GET",
-			dataType:"json",
-			url:"bookmarks.json",
-			success:function(data){
-				createlist(data);
-			}
-		})
-	 </script>
-	<script type="text/javascript">
-		$(document).ready(function () {
-			handleMarks();
-		})
-	</script>
 </head>
 <body>
 	<article>
@@ -33,5 +15,8 @@
 			</ul>
 		</div>
 	</article>
+	<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+	<script type="text/javascript" src="js/convertDate.js"></script>
+	<script type="text/javascript" src="js/handleMarks.js"></script>
 </body>
 </html>

@@ -6,7 +6,7 @@ function convertDate (createDate) {
 	if (!(match = createDate.match(/\d+/))) {
 	return false;
 	}
-	createDate +="000";
+	createDate = createDate *1000;
 	var date = new Date(parseInt(createDate,10));
 	return ChangeDateFormat(date);
 }

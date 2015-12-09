@@ -1,41 +1,46 @@
-function handleMarks(){
+$(document).ready(function () {
+	var itemlist ={};
+	$.ajax({
+		type:"GET",
+		dataType:"json",
+		async:false,
+		url:"bookmarks.json",
+		success:function(data){
+			itemlist = data;
+		}
+	})
+	createlist(itemlist);
+	handleMarks(itemlist);
+
+
+function handleMarks(itemlist){
 	$("#searchkey").bind('input propertychange',function () {
-		$.ajax({
-			type:"GET",
-			dataType:"json",
-			url:"bookmarks.json",
-			success:function(data){
-				var key = $("#searchkey").val();
-				var reg = new RegExp(key,'gi');
-				if(key==""){
-					createlist(data);
-				}else{
-					var matchData = data.filter(function(item){
-							return item.title.match(reg);
-						}).map(function(item){
-						var keys = item.title.match(reg);
-						var words = item.title.split(reg);
-						var str = "";
-						for(var i =0;i<words.length;i++){
-							str+=words[i];
-							if(i!=words.length-1){
-								str+="<span>"+keys[i]+"</span>";
-							}
-						}
-						item.title = str;
-						return item;
-					})
-					createlist(matchData);
-				}
-			}
-		})
+
+		var key = $("#searchkey").val();
+		var reg = new RegExp("("+key+")","gi");
+		var list = itemlist.concat();
+		if(key==""){
+			createlist(itemlist);
+		}else{
+			var matchData = list.filter(function(item){
+					return item.title.match(reg);
+			})
+			createlist(matchData,reg);
+		}
 	})
 }
 
-function createlist(data){
+function createlist(data,reg){
 	var str = data.reduce(function(p,item){
-		p+="<li class=\"list\"><div class=\"title\">"+item.title+"</div><div class=\"createDate\">Created@"+convertDate(item.created)+"</div></li>";
+		p+="<li class=\"list\"><div class=\"title\">"+highlightkey(reg,item.title) +"</div><div class=\"createDate\">Created@"+convertDate(item.created)+"</div></li>";
 		return p;
 	},"");
 	$("ul").html(str);
 }
+
+function highlightkey(reg,title){
+	var str = title.replace(reg,"<span>$1</span>");
+	return str;
+}
+
+})
